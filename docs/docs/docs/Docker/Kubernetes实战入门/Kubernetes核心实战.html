@@ -1,0 +1,985 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Kubernetes核心实战 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="Kubernetes基本概念.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" >
+            
+                <span>
+            
+                    
+                    Docker基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="../Docker基础/Docker基本概念.html">
+            
+                <a href="../Docker基础/Docker基本概念.html">
+            
+                    
+                    Docker基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="../Docker基础/Docker命令实战.html">
+            
+                <a href="../Docker基础/Docker命令实战.html">
+            
+                    
+                    Docker命令实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" >
+            
+                <span>
+            
+                    
+                    Kubernetes实战入门
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="Kubernetes基本概念.html">
+            
+                <a href="Kubernetes基本概念.html">
+            
+                    
+                    Kubernetes基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2.2" data-path="Kubernetes核心实战.html">
+            
+                <a href="Kubernetes核心实战.html">
+            
+                    
+                    Kubernetes核心实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Kubernetes核心实战</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="kubernetes-&#x6838;&#x5FC3;&#x5B9E;&#x6218;">Kubernetes &#x6838;&#x5FC3;&#x5B9E;&#x6218;</h1>
+<h3 id="1-&#x8D44;&#x6E90;&#x521B;&#x5EFA;&#x65B9;&#x5F0F;">1. &#x8D44;&#x6E90;&#x521B;&#x5EFA;&#x65B9;&#x5F0F;</h3>
+<ul>
+<li>&#x547D;&#x4EE4;&#x884C;</li>
+<li>YAML </li>
+</ul>
+<h3 id="2-namespace">2. Namespace</h3>
+<blockquote>
+<p>&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x7528;&#x6765;&#x9694;&#x79BB;&#x8D44;&#x6E90;</p>
+</blockquote>
+<pre><code class="lang-shell">kubectl create ns hello
+kubectl delete ns hello
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Namespace
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> hello
+</code></pre>
+<h3 id="3-pod">3. Pod</h3>
+<blockquote>
+<p>&#x8FD0;&#x884C;&#x4E2D;&#x7684;&#x4E00;&#x7EC4;&#x5BB9;&#x5668;&#xFF0C;Pod&#x662F;kubernetes&#x4E2D;&#x5E94;&#x7528;&#x7684;&#x6700;&#x5C0F;&#x5355;&#x4F4D;.</p>
+</blockquote>
+<p><img src="../../images/08_kubernetes_ActualCombat.png" alt="08_kubernetes_ActualCombat"></p>
+<pre><code class="lang-shell">kubectl run mynginx --image=nginx
+
+# &#x67E5;&#x770B;default&#x540D;&#x79F0;&#x7A7A;&#x95F4;&#x7684;Pod
+kubectl get pod 
+# &#x63CF;&#x8FF0;
+kubectl describe pod &#x4F60;&#x81EA;&#x5DF1;&#x7684;Pod&#x540D;&#x5B57;
+# &#x5220;&#x9664;
+kubectl delete pod Pod&#x540D;&#x5B57;
+# &#x67E5;&#x770B;Pod&#x7684;&#x8FD0;&#x884C;&#x65E5;&#x5FD7;
+kubectl logs Pod&#x540D;&#x5B57;
+
+# &#x6BCF;&#x4E2A;Pod - k8s&#x90FD;&#x4F1A;&#x5206;&#x914D;&#x4E00;&#x4E2A;ip
+kubectl get pod -owide
+# &#x4F7F;&#x7528;Pod&#x7684;ip+pod&#x91CC;&#x9762;&#x8FD0;&#x884C;&#x5BB9;&#x5668;&#x7684;&#x7AEF;&#x53E3;
+curl 192.168.169.136
+
+# &#x96C6;&#x7FA4;&#x4E2D;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x673A;&#x5668;&#x4EE5;&#x53CA;&#x4EFB;&#x610F;&#x7684;&#x5E94;&#x7528;&#x90FD;&#x80FD;&#x901A;&#x8FC7;Pod&#x5206;&#x914D;&#x7684;ip&#x6765;&#x8BBF;&#x95EE;&#x8FD9;&#x4E2A;Pod
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Pod
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    run:</span> mynginx
+<span class="hljs-attr">  name:</span> mynginx
+<span class="hljs-comment">#  namespace: default</span>
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  containers:</span>
+<span class="hljs-attr">  - image:</span> nginx
+<span class="hljs-attr">    name:</span> mynginx
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Pod
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    run:</span> myapp
+<span class="hljs-attr">  name:</span> myapp
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  containers:</span>
+<span class="hljs-attr">  - image:</span> nginx
+<span class="hljs-attr">    name:</span> nginx
+<span class="hljs-attr">  - image:</span> tomcat:<span class="hljs-number">8.5</span><span class="hljs-number">.68</span>
+<span class="hljs-attr">    name:</span> tomcat
+</code></pre>
+<p><img src="../../images/09_kubernetes_ActualCombat.png" alt="09_kubernetes_ActualCombat"></p>
+<blockquote>
+<p><strong>&#x6B64;&#x65F6;&#x7684;&#x5E94;&#x7528;&#x8FD8;&#x4E0D;&#x80FD;&#x5916;&#x90E8;&#x8BBF;&#x95EE;</strong></p>
+</blockquote>
+<h3 id="4-deployment">4. Deployment</h3>
+<blockquote>
+<p>&#x63A7;&#x5236;Pod&#xFF0C;&#x4F7F;Pod&#x62E5;&#x6709;&#x591A;&#x526F;&#x672C;&#xFF0C;&#x81EA;&#x6108;&#xFF0C;&#x6269;&#x7F29;&#x5BB9;&#x7B49;&#x80FD;&#x529B;</p>
+</blockquote>
+<pre><code class="lang-shell"># &#x6E05;&#x9664;&#x6240;&#x6709;Pod&#xFF0C;&#x6BD4;&#x8F83;&#x4E0B;&#x9762;&#x4E24;&#x4E2A;&#x547D;&#x4EE4;&#x6709;&#x4F55;&#x4E0D;&#x540C;&#x6548;&#x679C;&#xFF1F;
+kubectl run mynginx --image=nginx
+
+kubectl create deployment mytomcat --image=tomcat:8.5.68
+# &#x81EA;&#x6108;&#x80FD;&#x529B;
+</code></pre>
+<h4 id="41-&#x591A;&#x526F;&#x672C;">4.1 &#x591A;&#x526F;&#x672C;</h4>
+<pre><code class="lang-shell">kubectl create deployment my-dep --image=nginx --replicas=3
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> apps/v1
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> my-dep
+<span class="hljs-attr">  name:</span> my-dep
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">3</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    matchLabels:</span>
+<span class="hljs-attr">      app:</span> my-dep
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      labels:</span>
+<span class="hljs-attr">        app:</span> my-dep
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - image:</span> nginx
+<span class="hljs-attr">        name:</span> nginx
+</code></pre>
+<h4 id="42-&#x6269;&#x7F29;&#x5BB9;">4.2 &#x6269;&#x7F29;&#x5BB9;</h4>
+<pre><code class="lang-shell">kubectl scale --replicas=5 deployment/my-dep
+</code></pre>
+<pre><code class="lang-shell">kubectl edit deployment my-dep
+
+#&#x4FEE;&#x6539; replicas
+</code></pre>
+<h4 id="43-&#x81EA;&#x6108;&#x6545;&#x969C;&#x8F6C;&#x79FB;">4.3 &#x81EA;&#x6108;&amp;&#x6545;&#x969C;&#x8F6C;&#x79FB;</h4>
+<ul>
+<li>&#x505C;&#x673A;</li>
+<li>&#x5220;&#x9664;Pod</li>
+<li>&#x5BB9;&#x5668;&#x5D29;&#x6E83;</li>
+<li>....</li>
+</ul>
+<h4 id="44-&#x6EDA;&#x52A8;&#x66F4;&#x65B0;">4.4 &#x6EDA;&#x52A8;&#x66F4;&#x65B0;</h4>
+<pre><code class="lang-shell">kubectl set image deployment/my-dep nginx=nginx:1.16.1 --record
+kubectl rollout status deployment/my-dep
+</code></pre>
+<pre><code class="lang-shell"># &#x4FEE;&#x6539; kubectl edit deployment/my-dep
+</code></pre>
+<h4 id="45-&#x7248;&#x672C;&#x56DE;&#x9000;">4.5 &#x7248;&#x672C;&#x56DE;&#x9000;</h4>
+<pre><code class="lang-shell">#&#x5386;&#x53F2;&#x8BB0;&#x5F55;
+kubectl rollout history deployment/my-dep
+
+
+#&#x67E5;&#x770B;&#x67D0;&#x4E2A;&#x5386;&#x53F2;&#x8BE6;&#x60C5;
+kubectl rollout history deployment/my-dep --revision=2
+
+#&#x56DE;&#x6EDA;(&#x56DE;&#x5230;&#x4E0A;&#x6B21;)
+kubectl rollout undo deployment/my-dep
+
+#&#x56DE;&#x6EDA;(&#x56DE;&#x5230;&#x6307;&#x5B9A;&#x7248;&#x672C;)
+kubectl rollout undo deployment/my-dep --to-revision=2
+</code></pre>
+<blockquote>
+<p>&#x66F4;&#x591A;&#xFF1A;</p>
+<p>&#x9664;&#x4E86;Deployment&#xFF0C;k8s&#x8FD8;&#x6709; <code>StatefulSet</code> &#x3001;<code>DaemonSet</code> &#x3001;<code>Job</code>  &#x7B49; &#x7C7B;&#x578B;&#x8D44;&#x6E90;&#x3002;&#x6211;&#x4EEC;&#x90FD;&#x79F0;&#x4E3A; <code>&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;</code>&#x3002;</p>
+<p>&#x6709;&#x72B6;&#x6001;&#x5E94;&#x7528;&#x4F7F;&#x7528;  <code>StatefulSet</code>  &#x90E8;&#x7F72;&#xFF0C;&#x65E0;&#x72B6;&#x6001;&#x5E94;&#x7528;&#x4F7F;&#x7528; <code>Deployment</code> &#x90E8;&#x7F72;</p>
+<p><a href="https://kubernetes.io/zh/docs/concepts/workloads/controllers/" target="_blank">https://kubernetes.io/zh/docs/concepts/workloads/controllers/</a></p>
+</blockquote>
+<h3 id="5-service">5. Service</h3>
+<blockquote>
+<p>&#x5C06;&#x4E00;&#x7EC4; <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/" target="_blank">Pods</a> &#x516C;&#x5F00;&#x4E3A;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#x7684;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#x3002;</p>
+</blockquote>
+<pre><code class="lang-shell">#&#x66B4;&#x9732;Deploy
+kubectl expose deployment my-dep --port=8000 --target-port=80
+
+#&#x4F7F;&#x7528;&#x6807;&#x7B7E;&#x68C0;&#x7D22;Pod
+kubectl get pod -l app=my-dep
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Service
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> my-dep
+<span class="hljs-attr">  name:</span> my-dep
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    app:</span> my-dep
+<span class="hljs-attr">  ports:</span>
+<span class="hljs-attr">  - port:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">    protocol:</span> TCP
+<span class="hljs-attr">    targetPort:</span> <span class="hljs-number">80</span>
+</code></pre>
+<h4 id="51-clusterip">5.1 ClusterIP</h4>
+<pre><code class="lang-shell"># &#x7B49;&#x540C;&#x4E8E;&#x6CA1;&#x6709;--type&#x7684;
+kubectl expose deployment my-dep --port=8000 --target-port=80 --type=ClusterIP
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Service
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> my-dep
+<span class="hljs-attr">  name:</span> my-dep
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  ports:</span>
+<span class="hljs-attr">  - port:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">    protocol:</span> TCP
+<span class="hljs-attr">    targetPort:</span> <span class="hljs-number">80</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    app:</span> my-dep
+<span class="hljs-attr">  type:</span> ClusterIP
+</code></pre>
+<h4 id="52-nodeport">5.2 NodePort</h4>
+<pre><code class="lang-shell">kubectl expose deployment my-dep --port=8000 --target-port=80 --type=NodePort
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Service
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> my-dep
+<span class="hljs-attr">  name:</span> my-dep
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  ports:</span>
+<span class="hljs-attr">  - port:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">    protocol:</span> TCP
+<span class="hljs-attr">    targetPort:</span> <span class="hljs-number">80</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    app:</span> my-dep
+<span class="hljs-attr">  type:</span> NodePort
+</code></pre>
+<blockquote>
+<p>NodePort&#x8303;&#x56F4;&#x5728; 30000-32767 &#x4E4B;&#x95F4;</p>
+</blockquote>
+<h3 id="6-ingress">6. Ingress</h3>
+<h4 id="61-&#x5B89;&#x88C5;">6.1 &#x5B89;&#x88C5;</h4>
+<pre><code class="lang-shell">wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal/deploy.yaml
+
+#&#x4FEE;&#x6539;&#x955C;&#x50CF;
+vi deploy.yaml
+#&#x5C06;image&#x7684;&#x503C;&#x6539;&#x4E3A;&#x5982;&#x4E0B;&#x503C;&#xFF1A;
+registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0
+
+# &#x68C0;&#x67E5;&#x5B89;&#x88C5;&#x7684;&#x7ED3;&#x679C;
+kubectl get pod,svc -n ingress-nginx
+
+# &#x6700;&#x540E;&#x522B;&#x5FD8;&#x8BB0;&#x628A;svc&#x66B4;&#x9732;&#x7684;&#x7AEF;&#x53E3;&#x8981;&#x653E;&#x884C;
+</code></pre>
+<h4 id="62-&#x4F7F;&#x7528;">6.2 &#x4F7F;&#x7528;</h4>
+<blockquote>
+<p>&#x5B98;&#x7F51;&#x5730;&#x5740;&#xFF1A;<a href="https://kubernetes.github.io/ingress-nginx/" target="_blank">https://kubernetes.github.io/ingress-nginx/</a></p>
+<p>&#x5C31;&#x662F;nginx&#x505A;&#x7684;</p>
+<p><a href="https://192.168.3.17:32401/" target="_blank">https://192.168.3.17:32401/</a></p>
+<p><a href="http://192.168.3.17:31405/" target="_blank">http://192.168.3.17:31405/</a></p>
+</blockquote>
+<h5 id="621-&#x6D4B;&#x8BD5;&#x73AF;&#x5883;">6.2.1 &#x6D4B;&#x8BD5;&#x73AF;&#x5883;</h5>
+<blockquote>
+<p>&#x5E94;&#x7528;&#x5982;&#x4E0B;yaml&#xFF0C;&#x51C6;&#x5907;&#x597D;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;</p>
+</blockquote>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> apps/v1
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> hello-server
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    matchLabels:</span>
+<span class="hljs-attr">      app:</span> hello-server
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      labels:</span>
+<span class="hljs-attr">        app:</span> hello-server
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - name:</span> hello-server
+<span class="hljs-attr">        image:</span> registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/hello-server
+<span class="hljs-attr">        ports:</span>
+<span class="hljs-attr">        - containerPort:</span> <span class="hljs-number">9000</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">apiVersion:</span> apps/v1
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> nginx-demo
+<span class="hljs-attr">  name:</span> nginx-demo
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    matchLabels:</span>
+<span class="hljs-attr">      app:</span> nginx-demo
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      labels:</span>
+<span class="hljs-attr">        app:</span> nginx-demo
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - image:</span> nginx
+<span class="hljs-attr">        name:</span> nginx
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Service
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> nginx-demo
+<span class="hljs-attr">  name:</span> nginx-demo
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    app:</span> nginx-demo
+<span class="hljs-attr">  ports:</span>
+<span class="hljs-attr">  - port:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">    protocol:</span> TCP
+<span class="hljs-attr">    targetPort:</span> <span class="hljs-number">80</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Service
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> hello-server
+<span class="hljs-attr">  name:</span> hello-server
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    app:</span> hello-server
+<span class="hljs-attr">  ports:</span>
+<span class="hljs-attr">  - port:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">    protocol:</span> TCP
+<span class="hljs-attr">    targetPort:</span> <span class="hljs-number">9000</span>
+</code></pre>
+<h5 id="622-&#x57DF;&#x540D;&#x8BBF;&#x95EE;">6.2.2 &#x57DF;&#x540D;&#x8BBF;&#x95EE;</h5>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> networking.k8s.io/v1
+<span class="hljs-attr">kind:</span> Ingress  
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> ingress-host-bar
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  ingressClassName:</span> nginx
+<span class="hljs-attr">  rules:</span>
+<span class="hljs-attr">  - host:</span> <span class="hljs-string">&quot;hello.atguigu.com&quot;</span>
+<span class="hljs-attr">    http:</span>
+<span class="hljs-attr">      paths:</span>
+<span class="hljs-attr">      - pathType:</span> Prefix
+<span class="hljs-attr">        path:</span> <span class="hljs-string">&quot;/&quot;</span>
+<span class="hljs-attr">        backend:</span>
+<span class="hljs-attr">          service:</span>
+<span class="hljs-attr">            name:</span> hello-server
+<span class="hljs-attr">            port:</span>
+<span class="hljs-attr">              number:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">  - host:</span> <span class="hljs-string">&quot;demo.atguigu.com&quot;</span>
+<span class="hljs-attr">    http:</span>
+<span class="hljs-attr">      paths:</span>
+<span class="hljs-attr">      - pathType:</span> Prefix
+<span class="hljs-attr">        path:</span> <span class="hljs-string">&quot;/nginx&quot;</span>  <span class="hljs-comment"># &#x628A;&#x8BF7;&#x6C42;&#x4F1A;&#x8F6C;&#x7ED9;&#x4E0B;&#x9762;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x670D;&#x52A1;&#x4E00;&#x5B9A;&#x8981;&#x80FD;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#xFF0C;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x5C31;&#x662F;404</span>
+<span class="hljs-attr">        backend:</span>
+<span class="hljs-attr">          service:</span>
+<span class="hljs-attr">            name:</span> nginx-demo  <span class="hljs-comment">## java&#xFF0C;&#x6BD4;&#x5982;&#x4F7F;&#x7528;&#x8DEF;&#x5F84;&#x91CD;&#x5199;&#xFF0C;&#x53BB;&#x6389;&#x524D;&#x7F00;nginx</span>
+<span class="hljs-attr">            port:</span>
+<span class="hljs-attr">              number:</span> <span class="hljs-number">8000</span>
+</code></pre>
+<h5 id="623-&#x8DEF;&#x5F84;&#x91CD;&#x5199;">6.2.3 &#x8DEF;&#x5F84;&#x91CD;&#x5199;</h5>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> networking.k8s.io/v1
+<span class="hljs-attr">kind:</span> Ingress  
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  annotations:</span>
+    nginx.ingress.kubernetes.io/rewrite-target: /$<span class="hljs-number">2</span>
+<span class="hljs-attr">  name:</span> ingress-host-bar
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  ingressClassName:</span> nginx
+<span class="hljs-attr">  rules:</span>
+<span class="hljs-attr">  - host:</span> <span class="hljs-string">&quot;hello.atguigu.com&quot;</span>
+<span class="hljs-attr">    http:</span>
+<span class="hljs-attr">      paths:</span>
+<span class="hljs-attr">      - pathType:</span> Prefix
+<span class="hljs-attr">        path:</span> <span class="hljs-string">&quot;/&quot;</span>
+<span class="hljs-attr">        backend:</span>
+<span class="hljs-attr">          service:</span>
+<span class="hljs-attr">            name:</span> hello-server
+<span class="hljs-attr">            port:</span>
+<span class="hljs-attr">              number:</span> <span class="hljs-number">8000</span>
+<span class="hljs-attr">  - host:</span> <span class="hljs-string">&quot;demo.atguigu.com&quot;</span>
+<span class="hljs-attr">    http:</span>
+<span class="hljs-attr">      paths:</span>
+<span class="hljs-attr">      - pathType:</span> Prefix
+<span class="hljs-attr">        path:</span> <span class="hljs-string">&quot;/nginx(/|$)(.*)&quot;</span>  <span class="hljs-comment"># &#x628A;&#x8BF7;&#x6C42;&#x4F1A;&#x8F6C;&#x7ED9;&#x4E0B;&#x9762;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x670D;&#x52A1;&#x4E00;&#x5B9A;&#x8981;&#x80FD;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#xFF0C;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x5C31;&#x662F;404</span>
+<span class="hljs-attr">        backend:</span>
+<span class="hljs-attr">          service:</span>
+<span class="hljs-attr">            name:</span> nginx-demo  <span class="hljs-comment">## java&#xFF0C;&#x6BD4;&#x5982;&#x4F7F;&#x7528;&#x8DEF;&#x5F84;&#x91CD;&#x5199;&#xFF0C;&#x53BB;&#x6389;&#x524D;&#x7F00;nginx</span>
+<span class="hljs-attr">            port:</span>
+<span class="hljs-attr">              number:</span> <span class="hljs-number">8000</span>
+</code></pre>
+<h5 id="624-&#x6D41;&#x91CF;&#x9650;&#x5236;">6.2.4 &#x6D41;&#x91CF;&#x9650;&#x5236;</h5>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> networking.k8s.io/v1
+<span class="hljs-attr">kind:</span> Ingress
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> ingress-limit-rate
+<span class="hljs-attr">  annotations:</span>
+    nginx.ingress.kubernetes.io/limit-rps: <span class="hljs-string">&quot;1&quot;</span>
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  ingressClassName:</span> nginx
+<span class="hljs-attr">  rules:</span>
+<span class="hljs-attr">  - host:</span> <span class="hljs-string">&quot;haha.atguigu.com&quot;</span>
+<span class="hljs-attr">    http:</span>
+<span class="hljs-attr">      paths:</span>
+<span class="hljs-attr">      - pathType:</span> Exact
+<span class="hljs-attr">        path:</span> <span class="hljs-string">&quot;/&quot;</span>
+<span class="hljs-attr">        backend:</span>
+<span class="hljs-attr">          service:</span>
+<span class="hljs-attr">            name:</span> nginx-demo
+<span class="hljs-attr">            port:</span>
+<span class="hljs-attr">              number:</span> <span class="hljs-number">8000</span>
+</code></pre>
+<h3 id="7-&#x5B58;&#x50A8;&#x62BD;&#x8C61;">7. &#x5B58;&#x50A8;&#x62BD;&#x8C61;</h3>
+<h4 id="71-&#x73AF;&#x5883;&#x51C6;&#x5907;">7.1 &#x73AF;&#x5883;&#x51C6;&#x5907;</h4>
+<h5 id="711-&#x6240;&#x6709;&#x8282;&#x70B9;">7.1.1 &#x6240;&#x6709;&#x8282;&#x70B9;</h5>
+<pre><code class="lang-shell">#&#x6240;&#x6709;&#x673A;&#x5668;&#x5B89;&#x88C5;
+yum install -y nfs-utils
+</code></pre>
+<h5 id="712-&#x4E3B;&#x8282;&#x70B9;">7.1.2 &#x4E3B;&#x8282;&#x70B9;</h5>
+<pre><code class="lang-shell">#nfs&#x4E3B;&#x8282;&#x70B9;
+echo &quot;/nfs/data/ *(insecure,rw,sync,no_root_squash)&quot; &gt; /etc/exports
+
+mkdir -p /nfs/data
+systemctl enable rpcbind --now
+systemctl enable nfs-server --now
+#&#x914D;&#x7F6E;&#x751F;&#x6548;
+exportfs -r
+</code></pre>
+<h5 id="713-&#x4ECE;&#x8282;&#x70B9;">7.1.3 &#x4ECE;&#x8282;&#x70B9;</h5>
+<pre><code class="lang-shell">showmount -e 172.31.0.4
+
+#&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x6302;&#x8F7D; nfs &#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x5171;&#x4EAB;&#x76EE;&#x5F55;&#x5230;&#x672C;&#x673A;&#x8DEF;&#x5F84; /root/nfsmount
+mkdir -p /nfs/data
+
+mount -t nfs 172.31.0.4:/nfs/data /nfs/data
+# &#x5199;&#x5165;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;
+echo &quot;hello nfs server&quot; &gt; /nfs/data/test.txt
+</code></pre>
+<h5 id="714-&#x539F;&#x751F;&#x65B9;&#x5F0F;&#x6570;&#x636E;&#x6302;&#x8F7D;">7.1.4 &#x539F;&#x751F;&#x65B9;&#x5F0F;&#x6570;&#x636E;&#x6302;&#x8F7D;</h5>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> apps/v1
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> nginx-pv-demo
+<span class="hljs-attr">  name:</span> nginx-pv-demo
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    matchLabels:</span>
+<span class="hljs-attr">      app:</span> nginx-pv-demo
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      labels:</span>
+<span class="hljs-attr">        app:</span> nginx-pv-demo
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - image:</span> nginx
+<span class="hljs-attr">        name:</span> nginx
+<span class="hljs-attr">        volumeMounts:</span>
+<span class="hljs-attr">        - name:</span> html
+<span class="hljs-attr">          mountPath:</span> /usr/share/nginx/html
+<span class="hljs-attr">      volumes:</span>
+<span class="hljs-attr">        - name:</span> html
+<span class="hljs-attr">          nfs:</span>
+<span class="hljs-attr">            server:</span> <span class="hljs-number">172.31</span><span class="hljs-number">.0</span><span class="hljs-number">.4</span>
+<span class="hljs-attr">            path:</span> /nfs/data/nginx-pv
+</code></pre>
+<h4 id="72-pvpvc">7.2 PV&amp;PVC</h4>
+<blockquote>
+<p><em>PV&#xFF1A;&#x6301;&#x4E45;&#x5377;&#xFF08;Persistent Volume&#xFF09;&#xFF0C;&#x5C06;&#x5E94;&#x7528;&#x9700;&#x8981;&#x6301;&#x4E45;&#x5316;&#x7684;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x5230;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;</em></p>
+<p><em>PVC&#xFF1A;&#x6301;&#x4E45;&#x5377;&#x7533;&#x660E;&#xFF08;<strong>Persistent Volume Claim</strong>&#xFF09;&#xFF0C;&#x7533;&#x660E;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x6301;&#x4E45;&#x5377;&#x89C4;&#x683C;</em></p>
+</blockquote>
+<h5 id="721-&#x521B;&#x5EFA;pv&#x6C60;">7.2.1 &#x521B;&#x5EFA;pv&#x6C60;</h5>
+<blockquote>
+<p>&#x9759;&#x6001;&#x4F9B;&#x5E94;</p>
+</blockquote>
+<pre><code class="lang-shell">#nfs&#x4E3B;&#x8282;&#x70B9;
+mkdir -p /nfs/data/01
+mkdir -p /nfs/data/02
+mkdir -p /nfs/data/03
+</code></pre>
+<blockquote>
+<p>&#x521B;&#x5EFA;PV</p>
+</blockquote>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> PersistentVolume
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> pv01<span class="hljs-bullet">-10</span>m
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  capacity:</span>
+<span class="hljs-attr">    storage:</span> <span class="hljs-number">10</span>M
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteMany
+<span class="hljs-attr">  storageClassName:</span> nfs
+<span class="hljs-attr">  nfs:</span>
+<span class="hljs-attr">    path:</span> /nfs/data/<span class="hljs-number">01</span>
+<span class="hljs-attr">    server:</span> <span class="hljs-number">172.31</span><span class="hljs-number">.0</span><span class="hljs-number">.4</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> PersistentVolume
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> pv02<span class="hljs-bullet">-1</span>gi
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  capacity:</span>
+<span class="hljs-attr">    storage:</span> <span class="hljs-number">1</span>Gi
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteMany
+<span class="hljs-attr">  storageClassName:</span> nfs
+<span class="hljs-attr">  nfs:</span>
+<span class="hljs-attr">    path:</span> /nfs/data/<span class="hljs-number">02</span>
+<span class="hljs-attr">    server:</span> <span class="hljs-number">172.31</span><span class="hljs-number">.0</span><span class="hljs-number">.4</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> PersistentVolume
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> pv03<span class="hljs-bullet">-3</span>gi
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  capacity:</span>
+<span class="hljs-attr">    storage:</span> <span class="hljs-number">3</span>Gi
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteMany
+<span class="hljs-attr">  storageClassName:</span> nfs
+<span class="hljs-attr">  nfs:</span>
+<span class="hljs-attr">    path:</span> /nfs/data/<span class="hljs-number">03</span>
+<span class="hljs-attr">    server:</span> <span class="hljs-number">172.31</span><span class="hljs-number">.0</span><span class="hljs-number">.4</span>
+</code></pre>
+<h5 id="722-pvc&#x521B;&#x5EFA;&#x4E0E;&#x7ED1;&#x5B9A;">7.2.2 PVC&#x521B;&#x5EFA;&#x4E0E;&#x7ED1;&#x5B9A;</h5>
+<blockquote>
+<p>&#x521B;&#x5EFA;PVC</p>
+</blockquote>
+<pre><code class="lang-yaml"><span class="hljs-attr">kind:</span> PersistentVolumeClaim
+<span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> nginx-pvc
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  accessModes:</span>
+<span class="hljs-bullet">    -</span> ReadWriteMany
+<span class="hljs-attr">  resources:</span>
+<span class="hljs-attr">    requests:</span>
+<span class="hljs-attr">      storage:</span> <span class="hljs-number">200</span>Mi
+<span class="hljs-attr">  storageClassName:</span> nfs
+</code></pre>
+<blockquote>
+<p>&#x521B;&#x5EFA;Pod&#x7ED1;&#x5B9A;PVC</p>
+</blockquote>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> apps/v1
+<span class="hljs-attr">kind:</span> Deployment
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  labels:</span>
+<span class="hljs-attr">    app:</span> nginx-deploy-pvc
+<span class="hljs-attr">  name:</span> nginx-deploy-pvc
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">  selector:</span>
+<span class="hljs-attr">    matchLabels:</span>
+<span class="hljs-attr">      app:</span> nginx-deploy-pvc
+<span class="hljs-attr">  template:</span>
+<span class="hljs-attr">    metadata:</span>
+<span class="hljs-attr">      labels:</span>
+<span class="hljs-attr">        app:</span> nginx-deploy-pvc
+<span class="hljs-attr">    spec:</span>
+<span class="hljs-attr">      containers:</span>
+<span class="hljs-attr">      - image:</span> nginx
+<span class="hljs-attr">        name:</span> nginx
+<span class="hljs-attr">        volumeMounts:</span>
+<span class="hljs-attr">        - name:</span> html
+<span class="hljs-attr">          mountPath:</span> /usr/share/nginx/html
+<span class="hljs-attr">      volumes:</span>
+<span class="hljs-attr">        - name:</span> html
+<span class="hljs-attr">          persistentVolumeClaim:</span>
+<span class="hljs-attr">            claimName:</span> nginx-pvc
+</code></pre>
+<h4 id="73-configmap">7.3 ConfigMap</h4>
+<blockquote>
+<p>&#x62BD;&#x53D6;&#x5E94;&#x7528;&#x914D;&#x7F6E;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x66F4;&#x65B0;</p>
+</blockquote>
+<h5 id="731-redis&#x793A;&#x4F8B;">7.3.1 redis&#x793A;&#x4F8B;</h5>
+<ol>
+<li>&#x628A;&#x4E4B;&#x524D;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x521B;&#x5EFA;&#x4E3A;&#x914D;&#x7F6E;&#x96C6;</li>
+</ol>
+<pre><code class="lang-shell"># &#x521B;&#x5EFA;&#x914D;&#x7F6E;&#xFF0C;redis&#x4FDD;&#x5B58;&#x5230;k8s&#x7684;etcd&#xFF1B;
+kubectl create cm redis-conf --from-file=redis.conf
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">data:</span>    <span class="hljs-comment">#data&#x662F;&#x6240;&#x6709;&#x771F;&#x6B63;&#x7684;&#x6570;&#x636E;&#xFF0C;key&#xFF1A;&#x9ED8;&#x8BA4;&#x662F;&#x6587;&#x4EF6;&#x540D;   value&#xFF1A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;</span>
+  redis.conf: <span class="hljs-string">|
+    appendonly yes
+</span><span class="hljs-attr">kind:</span> ConfigMap
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> redis-conf
+<span class="hljs-attr">  namespace:</span> default
+</code></pre>
+<ol>
+<li>&#x521B;&#x5EFA;Pod</li>
+</ol>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Pod
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> redis
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  containers:</span>
+<span class="hljs-attr">  - name:</span> redis
+<span class="hljs-attr">    image:</span> redis
+<span class="hljs-attr">    command:</span>
+<span class="hljs-bullet">      -</span> redis-server
+<span class="hljs-bullet">      -</span> <span class="hljs-string">&quot;/redis-master/redis.conf&quot;</span>  <span class="hljs-comment">#&#x6307;&#x7684;&#x662F;redis&#x5BB9;&#x5668;&#x5185;&#x90E8;&#x7684;&#x4F4D;&#x7F6E;</span>
+<span class="hljs-attr">    ports:</span>
+<span class="hljs-attr">    - containerPort:</span> <span class="hljs-number">6379</span>
+<span class="hljs-attr">    volumeMounts:</span>
+<span class="hljs-attr">    - mountPath:</span> /data
+<span class="hljs-attr">      name:</span> data
+<span class="hljs-attr">    - mountPath:</span> /redis-master
+<span class="hljs-attr">      name:</span> config
+<span class="hljs-attr">  volumes:</span>
+<span class="hljs-attr">    - name:</span> data
+<span class="hljs-attr">      emptyDir:</span> {}
+<span class="hljs-attr">    - name:</span> config
+<span class="hljs-attr">      configMap:</span>
+<span class="hljs-attr">        name:</span> redis-conf
+<span class="hljs-attr">        items:</span>
+<span class="hljs-attr">        - key:</span> redis.conf
+<span class="hljs-attr">          path:</span> redis.conf
+</code></pre>
+<ol>
+<li>&#x68C0;&#x67E5;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;</li>
+</ol>
+<pre><code class="lang-shell">kubectl exec -it redis -- redis-cli
+
+127.0.0.1:6379&gt; CONFIG GET appendonly
+127.0.0.1:6379&gt; CONFIG GET requirepass
+</code></pre>
+<ol>
+<li>&#x4FEE;&#x6539;ConfigMap</li>
+</ol>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> ConfigMap
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> example-redis-config
+<span class="hljs-attr">data:</span>
+<span class="hljs-attr">  redis-config:</span> <span class="hljs-string">|
+    maxmemory 2mb
+    maxmemory-policy allkeys-lru
+</span></code></pre>
+<ol>
+<li>&#x68C0;&#x67E5;&#x914D;&#x7F6E;&#x662F;&#x5426;&#x66F4;&#x65B0;</li>
+</ol>
+<pre><code class="lang-shell">kubectl exec -it redis -- redis-cli
+
+127.0.0.1:6379&gt; CONFIG GET maxmemory
+127.0.0.1:6379&gt; CONFIG GET maxmemory-policy
+</code></pre>
+<blockquote>
+<p>&#x68C0;&#x67E5;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x66F4;&#x65B0;</p>
+<p>&#x4FEE;&#x6539;&#x4E86;CM&#x3002;Pod&#x91CC;&#x9762;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4F1A;&#x8DDF;&#x7740;&#x53D8;</p>
+<p><strong>&#x914D;&#x7F6E;&#x503C;&#x672A;&#x66F4;&#x6539;&#xFF0C;&#x56E0;&#x4E3A;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x542F;&#x52A8; Pod &#x624D;&#x80FD;&#x4ECE;&#x5173;&#x8054;&#x7684; ConfigMap &#x4E2D;&#x83B7;&#x53D6;&#x66F4;&#x65B0;&#x7684;&#x503C;&#x3002;</strong> </p>
+<p><strong>&#x539F;&#x56E0;&#xFF1A;&#x6211;&#x4EEC;&#x7684;Pod&#x90E8;&#x7F72;&#x7684;&#x4E2D;&#x95F4;&#x4EF6;&#x81EA;&#x5DF1;&#x672C;&#x8EAB;&#x6CA1;&#x6709;&#x70ED;&#x66F4;&#x65B0;&#x80FD;&#x529B;</strong></p>
+</blockquote>
+<h4 id="74-secret">7.4 Secret</h4>
+<blockquote>
+<p>Secret &#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x654F;&#x611F;&#x4FE1;&#x606F;&#xFF0C;&#x4F8B;&#x5982;&#x5BC6;&#x7801;&#x3001;OAuth &#x4EE4;&#x724C;&#x548C; SSH &#x5BC6;&#x94A5;&#x3002; &#x5C06;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x653E;&#x5728; secret &#x4E2D;&#x6BD4;&#x653E;&#x5728; <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/" target="_blank">Pod</a> &#x7684;&#x5B9A;&#x4E49;&#x6216;&#x8005; <a href="https://kubernetes.io/zh/docs/reference/glossary/?all=true#term-image" target="_blank">&#x5BB9;&#x5668;&#x955C;&#x50CF;</a> &#x4E2D;&#x6765;&#x8BF4;&#x66F4;&#x52A0;&#x5B89;&#x5168;&#x548C;&#x7075;&#x6D3B;&#x3002;</p>
+</blockquote>
+<pre><code class="lang-shell">kubectl create secret docker-registry leifengyang-docker \
+--docker-username=leifengyang \
+--docker-password=Lfy123456 \
+--docker-email=534096094@qq.com
+
+##&#x547D;&#x4EE4;&#x683C;&#x5F0F;
+kubectl create secret docker-registry regcred \
+  --docker-server=&lt;&#x4F60;&#x7684;&#x955C;&#x50CF;&#x4ED3;&#x5E93;&#x670D;&#x52A1;&#x5668;&gt; \
+  --docker-username=&lt;&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;&gt; \
+  --docker-password=&lt;&#x4F60;&#x7684;&#x5BC6;&#x7801;&gt; \
+  --docker-email=&lt;&#x4F60;&#x7684;&#x90AE;&#x7BB1;&#x5730;&#x5740;&gt;
+</code></pre>
+<pre><code class="lang-yaml"><span class="hljs-attr">apiVersion:</span> v1
+<span class="hljs-attr">kind:</span> Pod
+<span class="hljs-attr">metadata:</span>
+<span class="hljs-attr">  name:</span> private-nginx
+<span class="hljs-attr">spec:</span>
+<span class="hljs-attr">  containers:</span>
+<span class="hljs-attr">  - name:</span> private-nginx
+<span class="hljs-attr">    image:</span> leifengyang/guignginx:v1<span class="hljs-number">.0</span>
+<span class="hljs-attr">  imagePullSecrets:</span>
+<span class="hljs-attr">  - name:</span> leifengyang-docker
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Kubernetes基本概念.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Kubernetes基本概念">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Kubernetes核心实战","level":"1.2.2.2","depth":3,"previous":{"title":"Kubernetes基本概念","level":"1.2.2.1","depth":3,"path":"Docker/Kubernetes实战入门/Kubernetes基本概念.md","ref":"Docker/Kubernetes实战入门/Kubernetes基本概念.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Docker/Kubernetes实战入门/Kubernetes核心实战.md","mtime":"2023-12-15T06:22:01.164Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-12-15T06:44:22.975Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
